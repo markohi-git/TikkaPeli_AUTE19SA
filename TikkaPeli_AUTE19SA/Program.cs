@@ -28,20 +28,43 @@ namespace TikkaPeli_AUTE19SA
             //
             for (int j = 0; j < pelaajat.Count; j++)
             {
-
                 Pelaaja p = pelaajat.ElementAt(j);
-
                 Console.WriteLine("\nPelaaja: " + p.GetNimi());
+                int kokonaispisteet = 0;
                 for (int i = 0; i < 5; i++)
                 {
                     int tulos = p.Heitatikka();
+                    kokonaispisteet = kokonaispisteet + tulos;
                     Console.WriteLine("tikka heitetty, tulos: " + tulos);
                     Console.WriteLine("tikkojen lkm pelaajalla: " + p.TikkojenLKM());
                     Console.WriteLine("Tikkojen lkm taulussa: " + tikkataulu.TikkojenLKM());
                 }
+                p.kokonaispisteet = kokonaispisteet;
+                Console.WriteLine("Pelaajan "+p.GetNimi()+" pisteet "+p.kokonaispisteet);
             }
+            
+            Pelaaja voittaja=null;
+            for (int j = 0; j < pelaajat.Count; j++)
+            {
+                //ensimmäinen kierros, laittetaan voittajaksi ensimmäinen pelaaja olio
+                if (j == 0)
+                {
+                    voittaja = pelaajat.ElementAt(0);
+                }
+                //jos on vähintään toinen kierros, vertaillaan pelaajien pistemäärää eli nykyistä voittajaa 
+                //listassa seuraavaan
+                else
+                {
+                    //nykyisen voittajan pisteet ovat pienemmät kuin seuraavan pelaajan.
+                    //vaihdetaan voittajaksi suuremmilla pisteillä oleva pelaaja
+                    if (voittaja.kokonaispisteet < pelaajat.ElementAt(j).kokonaispisteet)
+                    {
+                        voittaja = pelaajat.ElementAt(j);
+                    }
+                }
+            }
+            Console.WriteLine("Voittaja on pelaaja: " + voittaja.GetNimi() + " pisteet: " + voittaja.kokonaispisteet);
             Console.ReadLine();
         }
     }
-    
 }

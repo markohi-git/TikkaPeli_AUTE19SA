@@ -8,13 +8,14 @@ namespace TikkaPeli_AUTE19SA
 {
     class Pelaaja
     {
+        public int kokonaispisteet{ get; set; }
         private string Nimi;
         private List<Tikka> Tikat = new List<Tikka>();
         private Tikkataulu Tt;
 
-        public Pelaaja(Tikkataulu tk)
+        public Pelaaja(Tikkataulu tt)
         {
-            Tt = tk;
+            Tt = tt;
         }
         public void Setnimi(string nimi)
         {

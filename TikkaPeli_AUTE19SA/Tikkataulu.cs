@@ -9,6 +9,7 @@ namespace TikkaPeli_AUTE19SA
     class Tikkataulu
     {
         private List<Tikka> Tikat = new List<Tikka>();
+        Random rnd = new Random(DateTime.Now.Millisecond);
         public Tikkataulu()
         {
             for (int i = 0; i < 5; i++)
@@ -28,7 +29,7 @@ namespace TikkaPeli_AUTE19SA
         {
             Tikat.Add(tikka);
             //Random rnd = new Random();
-            Random rnd = new Random(DateTime.Now.Millisecond);
+            
             return rnd.Next(11);
         }
         public int TikkojenLKM()
