@@ -64,7 +64,34 @@ namespace TikkaPeli_AUTE19SA
                 }
             }
             Console.WriteLine("Voittaja on pelaaja: " + voittaja.GetNimi() + " pisteet: " + voittaja.kokonaispisteet);
-            Console.ReadLine();
+            for (int k = 0; k < pelaajat.Count; k++)
+            {
+                for (int j = 0; j < pelaajat.Count - 1; j++)
+                {
+                    Pelaaja vp = pelaajat.ElementAt(j);
+                    Pelaaja op = pelaajat.ElementAt(j+1);
+                    //Vasemmalla puolella pienemmät pisteet ei tarvitse tehdä mitään
+                    if (vp.kokonaispisteet <= op.kokonaispisteet)
+                    {
+
+                    }
+                    //jos vasemmalla puolella on pienempi pistemäärä niin vaihdetaan paikkoja
+                    else
+                    {
+                        pelaajat.RemoveAt(j+1);
+                        pelaajat.RemoveAt(j);
+                        pelaajat.Insert(j, op);
+                        pelaajat.Insert(j+1, vp);
+                        Console.WriteLine("Vaihdetaan " + vp.GetNimi() + " -> " + op.GetNimi());
+                    }
+                }
+            }
+            for (int j = 0; j < pelaajat.Count; j++)
+            {
+                Pelaaja p = pelaajat.ElementAt(j);
+                Console.WriteLine(j + " " + p.GetNimi() + " "+p.kokonaispisteet);
+            }
+            Console.ReadKey();
         }
     }
 }
